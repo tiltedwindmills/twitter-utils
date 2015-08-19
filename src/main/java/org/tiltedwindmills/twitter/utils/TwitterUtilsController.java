@@ -26,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * @author John Daniel
  */
 @Controller
-@PropertySource("classpath:twitter.properties")
+@PropertySource(value = "classpath:twitter.properties", ignoreResourceNotFound = true)
 public final class TwitterUtilsController {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterUtilsController.class);
@@ -55,6 +55,8 @@ public final class TwitterUtilsController {
         // load the twitter service
         twitterService = twitterServiceFactory.getInstance();
         checkNotNull(twitterService, "twitterService cannot be null");
+
+        // TODO : validate the Twitter Oauth info was provided if twitter.properties file was not present.
     }
 
     /**
