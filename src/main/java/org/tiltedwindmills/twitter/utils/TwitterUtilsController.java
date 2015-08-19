@@ -20,16 +20,22 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-
+/**
+ * Primary application controller.
+ *
+ * @author John Daniel
+ */
 @Controller
 @PropertySource("classpath:twitter.properties")
 public final class TwitterUtilsController {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterUtilsController.class);
-    public static final String DIRTIES_CONTEXT = "dirtiesContext";
 
     @Value("${data.simulator.enabled}")
     private boolean simulated;
+
+    @Value("${twitter.screenname}")
+    private String screenName;
 
     @Inject
     private ConnectionRepository connectionRepository;
@@ -44,13 +50,19 @@ public final class TwitterUtilsController {
 
         checkNotNull(twitterServiceFactory, "twitterServiceFactory cannot be null");
         checkNotNull(connectionRepository, "connectionRepository cannot be null");
+        checkNotNull(screenName, "screenName cannot be null");
 
         // load the twitter service
         twitterService = twitterServiceFactory.getInstance();
         checkNotNull(twitterService, "twitterService cannot be null");
     }
 
-
+    /**
+     * Retrieves Twitter favorites from backend service and sends them to UI for display.
+     *
+     * @param model Spring M
+     * @return The view name to use when displaying the retrieved data.
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getFavorites(final Model model) {
 
@@ -62,8 +74,8 @@ public final class TwitterUtilsController {
             return "redirect:/connect/twitter";
         }
 
-        model.addAttribute(twitterService.getUserProfile(DIRTIES_CONTEXT));
-        final List<Tweet> allFavorites = twitterService.getFavorites(DIRTIES_CONTEXT);
+        model.addAttribute(twitterService.getUserProfile(screenName));
+        final List<Tweet> allFavorites = twitterService.getFavorites(screenName);
 
         LOG.info("Retrieval complete.  Found {} favorites", allFavorites.size());
         model.addAttribute("favorites", allFavorites);
