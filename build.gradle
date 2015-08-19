@@ -89,7 +89,10 @@ findbugs {
 }
 
 sonarRunner {
-
+    sonarProperties {
+        property "sonar.projectKey", "twitter-utils"
+        property "sonar.projectName", "Twitter Utilities App"
+    }
 }
 
 //build-dashboard { }
