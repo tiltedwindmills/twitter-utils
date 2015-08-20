@@ -19,10 +19,13 @@ Additional goals of the project are to get familiar with:
 
 Per usual, the project is bootstrapped with [Spring Boot](http://projects.spring.io/spring-boot/).
 
+The project requires the properties *spring.social.twitter.appId* and *spring.social.twitter.appSecret* to be
+configured.  The easiest way to provide this is to add the properties to a **twitter.properties** file on the classpath,
+but they can be provided in any standard Spring manner.  Note that Gradle doesn't play well with Boot's standard 
+( "--" ) manner for command line properties, so running directly from Gradle while trying to use command line
+parameters may not work.
 
-Project attempts to use:
-
-* [Semantic versioning](http://semver.org/)
+Project attempts to use [Semantic versioning](http://semver.org/).
 
 
 ### Notes
