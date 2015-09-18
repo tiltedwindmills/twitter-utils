@@ -41,7 +41,7 @@ public final class TwitterAPISimulator {
             return new ResponseEntity<>("Simulated Data not available", HttpStatus.FORBIDDEN);
         }
 
-        final Resource resource = new ClassPathResource("data/dirtiescontext_favorites_2015-08-02.json");
+        final Resource resource = new ClassPathResource("data/dirtiescontext_favorites_2015-09-18.json");
         return new ResponseEntity<>(IOUtils.toString(resource.getInputStream(), "UTF-8"), HttpStatus.OK);
     }
 }
