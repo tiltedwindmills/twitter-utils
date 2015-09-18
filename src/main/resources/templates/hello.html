@@ -1,14 +1,128 @@
-<html>
-<head>
-    <title>Hello Twitter</title>
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head">
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Twitter Favorites</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="http://fonts.googleapis.com/css?family=Quicksand:300,400" rel="stylesheet" type="text/css" />
+
+    <link href="css/scrolling-nav.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 </head>
-<body>
-<h3>Hello, <span th:text="${twitterProfile.name}">Some User</span>!</h3>
 
-<h4>These are your favorites:</h4>
 
-<ul>
-    <li th:each="favorite:${favorites}" th:text="${favorite.text}">Favorite</li>
-</ul>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Start Bootstrap</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                <li class="hidden">
+                    <a class="page-scroll" href="#page-top"></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#favorites">Favorites <span class="badge" th:text="${#lists.size(favorites)}">0</span></a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#services">Services</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<section id="intro" class="intro-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Scrolling Nav</h1>
+                <p><strong>Usage Instructions:</strong> Make sure to include the <code>scrolling-nav.js</code>, <code>jquery.easing.min.js</code>, and <code>scrolling-nav.css</code> files. To make a link smooth scroll to another section on the page, give the link the <code>.page-scroll</code> class and set the link target to a corresponding ID on the page.</p>
+                <a class="btn btn-default page-scroll" href="#favorites">Click Me to Scroll Down!</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="favorites" class="favorites-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Hello, <span th:text="${twitterProfile.name}">Some User</span>!</h3>
+
+                <h4> You have <span class="favoriteCount" th:text="${#lists.size(favorites)}">0</span> favorites:</h4>
+
+                <table class="table">
+                    <tr th:each="favorite:${favorites}">
+
+                        <td>
+                            <img th:src="${favorite.user.profileImageUrl}" src="icon"/>
+                        </td>
+
+                        <td th:text="${favorite.user.screenName}">Tweeter</td>
+                        <td th:text="${favorite.text}">Tweet</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="services-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Services Section</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Contact Section</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript" ></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="js/scrolling-nav.js"></script>
+
 </body>
 </html>

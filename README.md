@@ -45,4 +45,8 @@ that simulates the Twitter API.  Preferred options were:
   but given the lack of Jackson annotations on the Spring objects there was a need to use the
   [Jackson Mixin feature](http://wiki.fasterxml.com/JacksonMixInAnnotations), and I didn't feel like doing all that.
 
-* Integrated [DarkAdmin](http://www.prepbootstrap.com/bootstrap-theme/dark-admin) theme.
+* In the case of a Spring binding failure on startup due to *No qualifying bean of type 
+[org.springframework.social.twitter.api.Twitter]*, the application is likely missing the Spring Twitter credential 
+properties mentioned above.  I've not yet figured out a way to more elegantly or informatively handle this condition.
+
+* Integrated [SCrolling Nav](http://startbootstrap.com/template-overviews/scrolling-nav/) template.
